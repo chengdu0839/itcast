@@ -59,7 +59,10 @@ public class ItemsController3 {
 
 		// 指定视图
 		// 下边的路径，如果在视图解析器中配置jsp路径的前缀和jsp路径的后缀，修改为
-		modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
+		//modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
+		
+		// 使用视图解析器中配置的前缀和后缀
+		modelAndView.setViewName("items/itemsList");
 
 		return modelAndView;
 
