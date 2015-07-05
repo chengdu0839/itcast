@@ -17,7 +17,7 @@
 	<bean id="itemsController1" name="/queryItems.action"
 		class="cn.itcast.ssm.controller.ItemsController1" />
 
-	<!-- 处理器映射器。此处将bean的name作为url进行查找 ，需要在配置Handler时指定beanname（就是url） 所有的映射器都实现 
+	<!-- 处理器映射器。此处 将bean的name作为url进行查找 ，需要在配置Handler时指定beanname（就是url） 所有的映射器都实现 
 		HandlerMapping接口。 -->
 	<bean
 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
@@ -27,6 +27,23 @@
 	<bean
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 
+
+	<bean id="itemsController2" class="cn.itcast.ssm.controller.ItemsController2" />
+	
+	<!-- 处理器适配器。处理实现HttpRequestHandler接口的Handler类 -->
+	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+	
+	<!-- 为某个Handler配置多个action请求。注意，action不能重复。 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<!-- 对Controller配置多个action映射 key为action名称，value为对应controller的ID -->
+				<prop key="/queryItems1.action">itemsController1</prop>
+				<prop key="/queryItems2.action">itemsController1</prop>
+				<prop key="/queryItems3.action">itemsController2</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- 视图解析器 解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包 -->
 	<bean
